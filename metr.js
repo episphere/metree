@@ -11,10 +11,11 @@ metr=function(){
         // events
         var testAPIbutton=metr.div.querySelector('#testAPIbutton')
         testAPIbutton.onclick=function(){
+            var testResults=metr.div.querySelector('#testResults')
+            testResults.innerHTML='<span style="color:blue">calling ... </span>'
             var testAPIinput=metr.div.querySelector('#testAPIinput')
             var url=testAPIinput.value
             metr.get(url,function(x){
-                var testResults=metr.div.querySelector('#testResults')
                 testResults.innerHTML='<pre>'+JSON.stringify(x,null,3)+'</pre>'
             })
             //debugger
