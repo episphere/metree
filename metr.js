@@ -16,8 +16,26 @@ metr=function(){
             var testAPIinput=metr.div.querySelector('#testAPIinput')
             var url=testAPIinput.value
             metr.get(url,function(x){
-                testResults.innerHTML='<pre>'+JSON.stringify(x,null,3)+'</pre>'
+                metr.json=x
+                testResults.innerHTML='[<span id="showHideJSON"style="color:orange;cursor:pointer">hide JSON</span>]<pre style="fontsize:small;color:green">'+JSON.stringify(x,null,3)+'</pre>'
+                showHideJSON.onclick=function(){
+                    //if(showHideJSON.text)
+                    if(this.textContent=="hide JSON"){
+                        this.textContent="show JSON"
+                        this.style.color="green"
+                        this.parentElement.querySelector('pre').hidden=true
+                    }else{
+                        this.textContent="hide JSON"
+                        this.style.color="orange"
+                        this.parentElement.querySelector('pre').hidden=false
+                    }
+                    //debugger
+                }
+                setTimeout(function(){
+                    showHideJSON.click()
+                },2000)
             })
+                
             //debugger
         }
 
