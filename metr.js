@@ -40,6 +40,19 @@ metr=function(){
         }
 
     }
+
+    // V2 -- Nickie, this is the new bit, from here downward
+
+    metr.div2=document.body.querySelector('#meTreeDiv2')
+    if(metr.div2){
+        metr.div2.innerHTML=' Login with <button id="loginV2" style="color:blue;background-color:yellow;font-size:large">V2 API</button>'
+        loginV2.onclick=function(){
+            location.href='https://metree.familyhistory.duke.edu/v2/login?what_goes_here?'
+        }
+        
+    }
+
+
 }
 
 metr.fun={}
