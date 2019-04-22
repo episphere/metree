@@ -12,7 +12,7 @@ metr=function(){
 metr.loginUI=_=>{
     metr.div.innerHTML='<p>Username: <input id="uname"></p><p>Password: <input type="password"></p><p><button id="loginBt">Login</button></p>'
     document.getElementById('loginBt').onclick=async _=>{
-        alert('Where should I post this? \nShould I pass uname and passwd in POST body?')
+        alert('Where should I POST this? \nShould I pass uname and passwd in POST body?')
         let apiUrl = ''
 
         /*
