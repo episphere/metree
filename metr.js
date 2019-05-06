@@ -6,23 +6,20 @@ metr=function(){
     if(metr.div){
         console.log('meeTree UI div found, populating it ...')
         metr.loginUI()
+        console.log('clicking in 1 sec ...')
+        setTimeout(loginBt.onclick,1000)
     }
 }
 
 metr.loginUI=_=>{
-    let auth = JSON.parse(localStorage.metree)
-    auth.uname=auth.uname||''
-    auth.passwd=auth.passwd||''
-    metr.div.innerHTML=`<p>Username: <input id="uname" value="${auth.uname}"></p><p>Password: <input id="passwd" type="password" value="${auth.passwd}"></p><p><button id="loginBt">Login</button></p>`
-    document.getElementById('loginBt').onclick=async _=>{
-        //alert('Where should I POST this? \nShould I pass uname and passwd in POST body?')
-        let url = 'https://metree.familyhistory.duke.edu/v2/login'
-        let json = {
-            "username":uname.value,
-            "password":passwd.value
-        }
 
-        fetch(url,{
+    let parms=JSON.parse(localStorage.metree)
+    parms.uname=parms.uname||''
+    parms.passwd=parms.passwd||''
+    metr.div.innerHTML=`<p>Username:<input id="uname" value="${parms.uname}"></p><p>Password: <input id="passwd" type="password" value="${parms.passwd}"></p><p><button id="loginBt">Login</button></p>`
+    document.getElementById('loginBt').onclick=async _=>{
+        //alert('where should I post this? \nShould I pass uname and passwd in POST body?')
+        fetch('https://metree.familyhistory.duke.edu/v2/login',{
             method:"POST",
             mode:"no-cors",
             headers:{
@@ -33,9 +30,10 @@ metr.loginUI=_=>{
             },
             body:JSON.stringify(json)
         }).then(x=>{
-            debugger
+            console.log(x)
+            //debugger
         })
-        
+
     }
 }
 
