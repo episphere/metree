@@ -10,7 +10,10 @@ metr=function(){
 }
 
 metr.loginUI=_=>{
-    metr.div.innerHTML='<p>Username: <input id="uname"></p><p>Password: <input id="passwd" type="password"></p><p><button id="loginBt">Login</button></p>'
+    let auth = JSON.parse(localStorage.metree)
+    auth.uname=auth.uname||''
+    auth.passwd=auth.passwd||''
+    metr.div.innerHTML=`<p>Username: <input id="uname" value="${auth.uname}"></p><p>Password: <input id="passwd" type="password" value="${auth.passwd}"></p><p><button id="loginBt">Login</button></p>`
     document.getElementById('loginBt').onclick=async _=>{
         //alert('Where should I POST this? \nShould I pass uname and passwd in POST body?')
         let url = 'https://metree.familyhistory.duke.edu/v2/login'
@@ -23,7 +26,10 @@ metr.loginUI=_=>{
             method:"POST",
             mode:"no-cors",
             headers:{
-                'Content-Type':'application/json'
+                "Content-Type":"application/x-www-form-urlencoded",
+                "Accept": "*/*",
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive"
             },
             body:JSON.stringify(json)
         }).then(x=>{
